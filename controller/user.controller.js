@@ -1,10 +1,11 @@
 import User from "../models/userSchema.js";
 
 export const getCurrentUser=async(req,res)=>{
+    console.log("=== getCurrentUser started ===");
     try{
         const id=req.userId;
         console.log(id);
-        const user=await User.findById(req.userId).select("password")
+        const user=await User.findById(req.userId).select("-password")
         if(!user){
             return res.status(400).json({message:"user does not found"});
 
